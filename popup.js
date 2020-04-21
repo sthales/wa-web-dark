@@ -8,15 +8,16 @@ document.addEventListener(
       function () {
         function modifyDOM() {
           let darkThemeClass = "dark";
-          var themeState = localStorage.getItem("state");
 
-          if (themeState == "on") {
-            document.body.classList.remove(darkThemeClass);
-            localStorage.removeItem("state");
-          } else {
-            document.body.classList.add(darkThemeClass);
-            localStorage.setItem("state", "on");
-          }
+          chrome.storage.sync.get(["state"], function (result) {
+            if (result.state == "on") {
+              document.body.classList.remove(darkThemeClass);
+              chrome.storage.sync.remove("state");
+            } else {
+              document.body.classList.add(darkThemeClass);
+              chrome.storage.sync.set({ state: "on" });
+            }
+          });
 
           return document.body.innerHTML;
         }

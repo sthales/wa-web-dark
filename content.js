@@ -1,6 +1,9 @@
 "use strict";
 
 let darkThemeClass = "dark";
-if (localStorage.getItem("state") == "on") {
-  document.body.classList.add(darkThemeClass);
-}
+
+chrome.storage.sync.get(["state"], function (result) {
+  if (result.state == "on") {
+    document.body.classList.add(darkThemeClass);
+  }
+});

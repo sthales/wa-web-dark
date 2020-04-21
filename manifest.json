@@ -13,5 +13,5 @@
     "default_icon": "dark-wa-logo.png",
     "default_popup": "popup.html"
   },
-  "permissions": ["activeTab"]
+  "permissions": ["activeTab", "storage"]
 }
